@@ -1,47 +1,44 @@
 ---
-// Astro page component
+import "../styles/global.css";
+import Sidebar from "../components/Sidebar/Sidebar";
+import AboutSection from "../components/sections/AboutSection/AboutSection";
+import ExperienceSection from "../components/sections/ExperienceSection/ExperienceSection";
+import EducationSection from "../components/sections/EducationSection/EducationSection";
+import {
+	profile,
+	languages,
+	technologies,
+	education,
+	experience,
+} from "../data/profile";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Azul Rossini Profile</title>
-	</head>
-	<body>
-		<main>
-			<h1>Welcome to Astro</h1>
-			<p>Your profile site is ready to go!</p>
-		</main>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{profile.name} · Portfolio</title>
+  </head>
+  <body>
+    <div class="page">
+      <Sidebar
+        name={profile.name}
+        title={profile.title}
+        location={profile.location}
+        email={profile.email}
+        phone={profile.phone}
+        languages={languages}
+				client:only="react"
+        technologies={technologies}
+      />
+
+      <main class="content">
+				<AboutSection client:only="react" />
+				<ExperienceSection items={experience} client:only="react" />
+				<EducationSection items={education} client:only="react" />
+      </main>
+    </div>
+  </body>
 </html>
-
-<style>
-	:global(html) {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		color: white;
-	}
-
-	main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		min-height: 100vh;
-		padding: 1rem;
-		text-align: center;
-	}
-
-	h1 {
-		font-size: 3rem;
-		margin-bottom: 1rem;
-	}
-
-	p {
-		font-size: 1.25rem;
-		opacity: 0.8;
-	}
-</style>
