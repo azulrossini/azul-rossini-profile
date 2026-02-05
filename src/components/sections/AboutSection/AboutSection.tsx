@@ -3,6 +3,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import type { Profile } from "../../../models/profile";
 import "./AboutSection.css";
 
 const theme = createTheme({
@@ -24,7 +26,14 @@ const theme = createTheme({
   },
 });
 
-export const AboutSection: React.FC = () => {
+export interface AboutSectionProps {
+  profile: Profile;
+}
+
+export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
+  const tagline = profile.aboutTagline ?? "Software Engineer · 5+ years building products that scale";
+  const body = profile.aboutBody ?? "I turn complex problems into clean, user-focused solutions. Strong in full-stack development and cloud architecture, I work best in teams that care about quality and delivery. Bilingual (English & Spanish), used to remote and agile environments—ready to bring focus and reliability to your next project.";
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -38,10 +47,15 @@ export const AboutSection: React.FC = () => {
             About
           </Typography>
         </div>
-        <Card className="about-card" elevation={6}>
-          <CardContent>
-            <Typography variant="body1" className="about-text">
-            I am a proactive Software Engineer with more than 5 years of experience developing innovative, user-centric web applications. I excel at transforming complex ideas into efficient, impactful solutions through collaboration, creativity and technical precision. I value collaboration, continuous improvement and operational excellence in every aspect of my work.
+        <Card className="about-card" elevation={0}>
+          <CardContent className="about-card-content">
+            <div className="about-hero">
+              <Typography component="p" className="about-tagline">
+                {tagline}
+              </Typography>
+            </div>
+            <Typography component="p" className="about-body">
+              {body}
             </Typography>
           </CardContent>
         </Card>
@@ -51,4 +65,3 @@ export const AboutSection: React.FC = () => {
 };
 
 export default AboutSection;
-

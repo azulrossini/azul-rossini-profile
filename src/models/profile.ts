@@ -6,6 +6,9 @@ export interface Profile {
   location: string;
   email: string;
   phone: string;
+  githubUrl?: string;
+  aboutTagline?: string;
+  aboutBody?: string;
 }
 
 export interface Language {
@@ -20,16 +23,20 @@ export interface Technology {
 export interface Education {
   school: string;
   degree: string;
+  location: string;
   startDate: MonthYearISO;
   endDate?: MonthYearISO;
   description: string;
+  highlights?: string[];
 }
 
 export interface Experience {
   company: string;
   role: string;
+  location: string;
   startDate: MonthYearISO;
   endDate?: MonthYearISO;
   description: string;
+  responsibilities?: string[];
 }
 

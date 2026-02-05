@@ -1,9 +1,9 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import type { Experience } from "../../../models/profile";
+import DetailCard from "../DetailCard/DetailCard";
 import "./ExperienceSection.css";
 
 const theme = createTheme({
@@ -56,28 +56,20 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         </div>
         <div className="card-grid">
           {items.map((item) => (
-            <Card
-              className="experience-card"
-              elevation={6}
+            <DetailCard
               key={item.company + item.role}
-            >
-              <CardContent>
-                <header className="card-header">
-                  <Typography variant="subtitle1" component="h3" className="card-title">
-                    {item.role}
-                  </Typography>
-                  <Typography variant="body2" className="muted">
-                    {item.company}
-                  </Typography>
-                  <span className="pill">
-                    {formatPeriod(item.startDate, item.endDate)}
-                  </span>
-                </header>
-                <Typography variant="body2" className="card-text">
-                  {item.description}
-                </Typography>
-              </CardContent>
-            </Card>
+              icon={<WorkOutlineIcon />}
+              title={item.role.trim()}
+              subtitle={`${item.company} · ${item.location}`}
+              period={formatPeriod(item.startDate, item.endDate)}
+              summary={item.description}
+              listLabel={
+                item.responsibilities?.length
+                  ? "Key responsibilities & achievements"
+                  : undefined
+              }
+              listItems={item.responsibilities}
+            />
           ))}
         </div>
       </section>
@@ -86,4 +78,3 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
 };
 
 export default ExperienceSection;
-

@@ -1,9 +1,9 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import type { Education } from "../../../models/profile";
+import DetailCard from "../DetailCard/DetailCard";
 import "./EducationSection.css";
 
 const theme = createTheme({
@@ -54,28 +54,16 @@ export const EducationSection: React.FC<EducationSectionProps> = ({ items }) => 
         </div>
         <div className="card-grid">
           {items.map((item) => (
-            <Card
-              className="education-card"
-              elevation={6}
+            <DetailCard
               key={item.school + item.degree}
-            >
-              <CardContent>
-                <header className="card-header">
-                  <Typography variant="subtitle1" component="h3" className="card-title">
-                    {item.degree}
-                  </Typography>
-                  <Typography variant="body2" className="muted">
-                    {item.school}
-                  </Typography>
-                  <span className="pill">
-                    {formatPeriod(item.startDate, item.endDate)}
-                  </span>
-                </header>
-                <Typography variant="body2" className="card-text">
-                  {item.description}
-                </Typography>
-              </CardContent>
-            </Card>
+              icon={<SchoolOutlinedIcon />}
+              title={item.degree}
+              subtitle={`${item.school} · ${item.location}`}
+              period={formatPeriod(item.startDate, item.endDate)}
+              summary={item.description}
+              listLabel={item.highlights?.length ? "Highlights" : undefined}
+              listItems={item.highlights}
+            />
           ))}
         </div>
       </section>
@@ -84,4 +72,3 @@ export const EducationSection: React.FC<EducationSectionProps> = ({ items }) => 
 };
 
 export default EducationSection;
-

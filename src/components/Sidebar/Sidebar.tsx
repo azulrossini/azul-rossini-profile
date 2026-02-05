@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
-import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import type { Language, Technology } from "../../models/profile";
 import "./Sidebar.css";
 
@@ -19,40 +18,42 @@ export const Sidebar: React.FC<SidebarProps> = ({
   name,
   title,
   location,
-  email,
-  phone,
   languages,
   technologies,
 }) => {
-  const initial = name?.[0] ?? "?";
-  const whatsappNumber = phone.replace(/\D/g, "");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <aside className="sidebar">
-      <div className="avatar">
-        <span>{initial}</span>
-      </div>
-      <h1 className="name">{name}</h1>
-      <p className="title">{title}</p>
+    <aside className={`sidebar ${menuOpen ? "is-open" : ""}`}>
+      <button
+        type="button"
+        className="sidebar-trigger"
+        onClick={() => setMenuOpen((prev) => !prev)}
+        aria-expanded={menuOpen}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+      >
+        <div className="sidebar-trigger-text">
+          <h1 className="name">
+            <a
+              className="name-link"
+              href="https://www.linkedin.com/in/maria-azul-rossini/"
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {name}
+            </a>
+          </h1>
+          <p className="title">{title}</p>
+        </div>
+        <ExpandMoreIcon className="sidebar-chevron" aria-hidden />
+      </button>
 
-      <div className="info">
+      <div className="sidebar-content">
+        <div className="info">
         <div className="info-row">
           <LocationOnOutlinedIcon fontSize="small" className="info-icon" />
           <span>{location}</span>
-        </div>
-        <div className="info-row">
-          <MailOutlineOutlinedIcon fontSize="small" className="info-icon" />
-          <a href={`mailto:${email}`}>{email}</a>
-        </div>
-        <div className="info-row">
-          <PhoneIphoneOutlinedIcon fontSize="small" className="info-icon" />
-          <a
-            href={`https://wa.me/${whatsappNumber}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {phone}
-          </a>
         </div>
       </div>
 
@@ -78,6 +79,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           ))}
         </ul>
       </section>
+      </div>
     </aside>
   );
 };
