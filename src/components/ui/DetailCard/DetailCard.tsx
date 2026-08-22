@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -14,6 +14,11 @@ export interface DetailCardProps {
   listItems?: string[];
 }
 
+/**
+ * Reusable summary card used by both ExperienceSection and EducationSection.
+ * Lives under components/ui since it's a generic building block, not a
+ * page section on its own.
+ */
 export const DetailCard: React.FC<DetailCardProps> = ({
   icon,
   title,
@@ -23,7 +28,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({
   listLabel,
   listItems,
 }) => {
-  const hasList = listLabel && listItems && listItems.length > 0;
+  const hasList = Boolean(listLabel && listItems && listItems.length > 0);
 
   return (
     <Card className="detail-card" elevation={0}>
@@ -53,8 +58,8 @@ export const DetailCard: React.FC<DetailCardProps> = ({
               {listLabel}
             </Typography>
             <ul className="detail-card-list-items">
-              {listItems!.map((item, i) => (
-                <li key={i} className="detail-card-list-item">
+              {listItems!.map((item) => (
+                <li key={item} className="detail-card-list-item">
                   {item}
                 </li>
               ))}

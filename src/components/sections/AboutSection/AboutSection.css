@@ -46,6 +46,12 @@
   flex-wrap: wrap;
 }
 
+.about-hero-icon {
+  color: #7dd3fc !important;
+  font-size: 1.35rem !important;
+  flex-shrink: 0;
+}
+
 .about-card .about-tagline {
   font-size: 1.05rem !important;
   font-weight: 600 !important;
