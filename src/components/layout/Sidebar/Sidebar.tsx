@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import type { Language, Technology } from "../../models/profile";
+import type { Language, Technology } from "../../../types/profile";
 import "./Sidebar.css";
 
 export interface SidebarProps {
   name: string;
   title: string;
   location: string;
-  email: string;
-  phone: string;
   languages: Language[];
   technologies: Technology[];
 }
@@ -51,38 +49,37 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       <div className="sidebar-content">
         <div className="info">
-        <div className="info-row">
-          <LocationOnOutlinedIcon fontSize="small" className="info-icon" />
-          <span>{location}</span>
+          <div className="info-row">
+            <LocationOnOutlinedIcon fontSize="small" className="info-icon" />
+            <span>{location}</span>
+          </div>
         </div>
-      </div>
 
-      <section className="technologies">
-        <h2>Technologies</h2>
-        <div className="technologies-card">
+        <section className="technologies">
+          <h2>Technologies</h2>
+          <div className="technologies-card">
+            <ul>
+              {technologies.map((tech) => (
+                <li key={tech.name}>{tech.name}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="languages">
+          <h2>Languages</h2>
           <ul>
-            {technologies.map((tech) => (
-              <li key={tech.name}>{tech.name}</li>
+            {languages.map((lang) => (
+              <li key={lang.name}>
+                <span>{lang.name}</span>
+                <span className="badge">{lang.level}</span>
+              </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section className="languages">
-        <h2>Languages</h2>
-        <ul>
-          {languages.map((lang) => (
-            <li key={lang.name}>
-              <span>{lang.name}</span>
-              <span className="badge">{lang.level}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+        </section>
       </div>
     </aside>
   );
 };
 
 export default Sidebar;
-

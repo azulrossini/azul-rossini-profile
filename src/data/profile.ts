@@ -4,7 +4,7 @@ import type {
   Technology,
   Education,
   Experience,
-} from "../models/profile";
+} from "../types/profile";
 
 export const profile: Profile = {
   name: "Maria Azul Rossini",
@@ -13,9 +13,10 @@ export const profile: Profile = {
   email: "mazulrossini@gmail.com",
   phone: "+34610467983",
   githubUrl: "https://github.com/azulrossini/azul-rossini-profile",
-  aboutTagline: "Software Engineer · 5+ years building products that scale",
+  aboutTagline:
+    "Software Engineer · 5+ years building products that scale, now focused on AI-powered solutions",
   aboutBody:
-    "I turn complex problems into clean, user-focused solutions. Strong in full-stack development and cloud architecture, I work best in teams that care about quality and delivery. Bilingual (English & Spanish), used to remote and agile environments—ready to bring focus and reliability to your next project.",
+    "I turn complex problems into clean, user-focused solutions. Strong in full-stack development and cloud architecture, I work best in teams that care about quality and delivery. I'm currently building an AI-powered product end to end, from integrating AI tools into my own workflow to shipping AI-driven features for clients. Bilingual (English & Spanish), used to remote and agile environments—ready to bring focus and reliability to your next project.",
 };
 
 export const languages: Language[] = [
@@ -41,6 +42,9 @@ export const technologies: Technology[] = [
   { name: "Astro" },
   { name: "MongoDB" },
   { name: "Docker" },
+  { name: "AI Tools (Copilot, Cursor, ChatGPT, Claude)" },
+  { name: "Prompt Engineering" },
+  { name: "AI-powered Product Development" },
 ];
 
 export const education: Education[] = [
@@ -63,11 +67,25 @@ export const education: Education[] = [
 
 export const experience: Experience[] = [
   {
+    company: "Kabilio",
+    role: "Fullstack Developer",
+    location: "Barcelona, Spain",
+    startDate: "2026-03-01",
+    description:
+      "Building an AI-powered product from the ground up: a software platform that both uses AI tools in its own development workflow and delivers AI-driven solutions directly to clients.",
+    responsibilities: [
+      "Design and build the product's core features as part of a small, fast-moving team",
+      "Use AI tools (Copilot, Cursor, ChatGPT, Claude) throughout the development process to boost productivity and code quality",
+      "Develop AI-driven capabilities that ship directly to clients as product features",
+      "Collaborate cross-functionally to turn product ideas into shipped, reliable software",
+    ],
+  },
+  {
     company: "FolderIT",
     role: "Fullstack Developer",
     location: "Santa Fe, Argentina",
     startDate: "2022-08-03",
-    endDate: "2026-01-13",
+    endDate: "2025-12-01",
     description:
       "Design and build scalable web applications for diverse clients (e-commerce, services, internal tools) using modern full-stack technologies. Work closely with stakeholders and cross-functional teams in English and Spanish to deliver on time and iterate based on feedback.",
     responsibilities: [
@@ -95,4 +113,3 @@ export const experience: Experience[] = [
     ],
   },
 ];
-

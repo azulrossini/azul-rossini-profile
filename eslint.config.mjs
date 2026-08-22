@@ -46,6 +46,16 @@ export default [
     },
   },
   {
+    // Astro's generated env.d.ts relies on triple-slash references by
+    // convention (it's how Astro wires up its ambient types) — not
+    // something we control, so it's exempt from the rule above. This
+    // must come after the "**/*.ts" block so it wins for this file.
+    files: ["src/env.d.ts"],
+    rules: {
+      "@typescript-eslint/triple-slash-reference": "off",
+    },
+  },
+  {
     files: ["**/*.astro"],
     languageOptions: {
       parser: astroParser,
